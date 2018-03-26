@@ -1,3 +1,3 @@
-from Pots import Pots
-from ISDN import ISDN
-from Iphone import Iphone
+from .Pots import Pots
+from .ISDN import ISDN
+from .Iphone import Iphone
