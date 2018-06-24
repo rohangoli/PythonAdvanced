@@ -1,3 +1,5 @@
+#   Using Shared Memory Array & Value
+
 import time
 import multiprocessing
 
