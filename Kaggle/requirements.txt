@@ -1,0 +1,18 @@
+## For DataFrame Operations
+pandas
+
+## For Numerical Operations on Arrays
+numpy
+
+## For Plotting Graphs
+matplotlib
+seaborn
+
+## For ML-Basics
+scikit-learn
+
+## Kaggle API
+kaggle
+
+## Extreme Gradient Boosting Regression
+xgboost
