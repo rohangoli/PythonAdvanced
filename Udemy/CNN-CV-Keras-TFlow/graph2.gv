@@ -1,0 +1,19 @@
+digraph {
+
+    main -> parse -> execute;
+
+    main -> init;
+
+    main -> cleanup;
+
+    execute -> make_string;
+
+    execute -> print_f
+
+    init -> make_string;
+
+    main -> print_f;
+
+    execute -> compare;
+
+}
