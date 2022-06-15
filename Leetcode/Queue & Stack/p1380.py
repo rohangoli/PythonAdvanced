@@ -1,4 +1,4 @@
-## Number of Islands - QUEUE Implementation
+## Number of islands - Stack Implementation 
 
 # Example 1:
 # Input: grid = [
@@ -18,9 +18,6 @@
 # ]
 # Output: 3
 
-## Rohan's Solution with Queue's(for greedy search of land) and HashSet(for visited nodes)
-## O(N . M . log MN) - TC
-## O(N . M) - SC
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         M = len(grid)
@@ -29,6 +26,46 @@ class Solution:
         #island_groups = []
         visited = set()
         island_count = 0
+        
+        ## Stack Implementation
+        i=0
+        while i<M:
+            j=0
+            while j<N:
+                tempS = []
+                if grid[i][j]=='1' and (i,j) not in visited:
+                    tempS.append((i,j))
+                    island_count+=1
+                    # visited.add((i,j))
+                
+                while tempS:
+                    # print(tempS)
+                    x,y = tempS[-1]
+                    # print(x,y)
+                        
+                    visited.add((x,y))
+                    if y+1<N and grid[x][y+1]=='1' and (x,y+1) not in visited:
+                        tempS.append((x,y+1))
+                        
+                    elif x+1<M and grid[x+1][y]=='1' and (x+1,y) not in visited:
+                        tempS.append((x+1,y))
+                        
+                    elif y-1>=0 and grid[x][y-1]=='1' and (x,y-1) not in visited:
+                        tempS.append((x,y-1))
+                    
+                    elif x-1>=0 and grid[x-1][y]=='1' and (x-1,y) not in visited:
+                        tempS.append((x-1,y))
+
+                    else:
+                        tempS.pop()
+                    
+                # print('-'*20)    
+                j+=1
+            i+=1
+        # print('='*50)
+        return island_count
+        
+        ## Queue Implementation
         
         i=0
         while i<M:
@@ -62,42 +99,9 @@ class Solution:
                         
                     if y+1<N and grid[x][y+1]=='1' and (x,y+1) not in visited:
                         tempQ.append((x,y+1))
-                #print('-'*20)
+                # print('-'*20)
                 j+=1
             i+=1
         
-        #print('='*50)
+        # print('='*50)
         return island_count
-
-## Optimal Solution withn only Queue
-from collections import deque
-
-class Solution:    
-    def numIslands(self, grid: List[List[str]]) -> int:
-        queue = deque()
-                
-        nrows = len(grid)
-        ncols = len(grid[0])
-        islands = 0
-        for row in range(nrows):
-            for col in range(ncols):                
-                if grid[row][col] == "1":
-                    islands += 1
-                    queue.append((row, col))                    
-                    grid[row][col] = "0"                    
-                    while queue:                                                
-                        r, c = queue.popleft()                        
-                        if r < nrows - 1 and grid[r+1][c] == "1":
-                            queue.append((r+1, c)) 
-                            grid[r+1][c] = "0"                    
-                        if c < ncols - 1 and grid[r][c+1] == "1":
-                            queue.append((r, c+1)) 
-                            grid[r][c+1] = "0"                    
-                        if r > 0 and grid[r-1][c] == "1":
-                            queue.append((r-1, c)) 
-                            grid[r-1][c] = "0"                    
-                        if c > 0 and grid[r][c-1] == "1":
-                            queue.append((r, c-1)) 
-                            grid[r][c-1] = "0"                    
-                        
-        return islands
