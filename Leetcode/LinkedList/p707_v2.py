@@ -1,4 +1,4 @@
-## Design Single Linked List
+## 707. Design Linked List
 
 class Node:
     def __init__(self, val):

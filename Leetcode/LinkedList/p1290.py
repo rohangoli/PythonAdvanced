@@ -1,99 +1,39 @@
-class Node:
-    def __init__(self, val):
-        self.val = val
-        self.next = None
+## 1290. Convert Binary Number in a Linked List to Integer
 
-class MyLinkedList:
+# Example 1:
+# Input: head = [1,0,1]
+# Output: 5
+# Explanation: (101) in base 2 = (5) in base 10
 
-    def __init__(self):
-        self.head = None
+# Example 2:
+# Input: head = [0]
+# Output: 0
 
-    def get(self, index: int) -> int:
-        # self.printLinkedList()
-        temp=0
-        curr = self.head
-        while temp!=index and curr!=None:
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def getDecimalValue(self, head: ListNode) -> int:
+        
+        if not head:
+            return 0
+        
+        N = 0
+        curr = head
+        while curr:
             curr = curr.next
-            temp+=1
-        if curr==None or temp!=index:
-            return -1
-        return curr.val
-
-    def addAtHead(self, val: int) -> None:
-        newNode = Node(val)
-        newNode.next = self.head
-        self.head = newNode
-        # self.printLinkedList()
-        return None
-
-    def addAtTail(self, val: int) -> None:
-        newNode = Node(val)
-        curr = self.head
-        prev=None
-        while curr!=None:
-            prev=curr
-            curr=curr.next
-            
-        if prev==None:
-            self.head = newNode
-        else:
-            prev.next = newNode
-        # self.printLinkedList()
-        return None
-
-    def addAtIndex(self, index: int, val: int) -> None:
-        newNode = Node(val)
-        curr = self.head
-        temp=0
-        prev=None
-        while temp!=index and curr!=None:
-            prev = curr
+            N+=1
+        
+        #print(N)
+        
+        curr = head
+        result = 0
+        while curr:
+            result+= (curr.val)*(2**(N-1))
             curr = curr.next
-            temp+=1
-        
-        if prev==None:
-            newNode.next = self.head
-            self.head = newNode
-        else:
-            newNode.next = prev.next
-            prev.next = newNode
-        # self.printLinkedList()
-        return None
-        
-
-    def deleteAtIndex(self, index: int) -> None:
-        temp = 0
-        curr = self.head
-        prev=None
-        while temp!=index and curr!=None:
-            prev = curr
-            curr=curr.next
-            temp+=1
+            N-=1
             
-        if temp!=index or curr==None:
-            return None
-            
-        if prev == None:
-            self.head=self.head.next
-        else:
-            prev.next=curr.next
-        # self.printLinkedList()
-        return None
-    
-    def printLinkedList(self) -> None:
+        return result
         
-        curr = self.head
-        while curr!=None:
-            print(curr.val,"->",end=" ")
-            curr=curr.next
-        print('\n','-'*20)
-        return None
-
-
-# Your MyLinkedList object will be instantiated and called as such:
-# obj = MyLinkedList()
-# param_1 = obj.get(index)
-# obj.addAtHead(val)
-# obj.addAtTail(val)
-# obj.addAtIndex(index,val)
-# obj.deleteAtIndex(index)
