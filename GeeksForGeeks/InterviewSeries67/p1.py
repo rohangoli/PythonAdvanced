@@ -44,7 +44,7 @@ def minimumNumber(n, arr):
 
 print('Case1:')
 print([3,2,4])
-print(minimumNumber(3,[3,2,4])) ## 1 [3,2,4] -> [3,2,1] -> [1,2,1] -> [1,1,1]
+print(minimumNumber(3,[3,2,4])) ## 1 [3,2,4] -> [3,2,1] -> [1,2,1] -> [1,1,1] = max=1
 
 print('Case2:')
-print(minimumNumber(2,[2,4])) ## 2 [2,4] -> [2,2] -> [2,0]
+print(minimumNumber(2,[2,4])) ## 2 [2,4] -> [2,2] -> [2,0] = max=2
