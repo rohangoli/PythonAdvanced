@@ -13,6 +13,7 @@ def partition(nums, left, right):
 
         if i<j:
             nums[i],nums[j] = nums[j],nums[i] 
+            print(nums)
     
     nums[j],nums[left] = nums[left], nums[j]
 
@@ -36,12 +37,12 @@ def partition(nums, left, right):
 def quickSort(nums, left, right):
     if left<=right:
         partition_position = partition(nums,left, right)
-
+        print(partition_position, nums)
         quickSort(nums,left, partition_position-1)
         quickSort(nums,partition_position+1,right)
 
 
-tc = [[5,3,1,5,8,9],[1,6,0,1,3,8,2,4],[1,3,0,7,-1,5,-10,20]]
+tc = [[5,3,1,5,8,9],[1,6,0,1,3,8,2,4],[1,3,0,7,-1,5,-10,20], [8,9,2,3,-1,2,5]]
 for idx,arr in enumerate(tc):
     arr.append(math.inf)
     print("TestCase: {}\nGiven Array: {}".format(idx,arr))
